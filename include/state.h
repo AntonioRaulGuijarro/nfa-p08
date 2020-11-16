@@ -27,6 +27,7 @@ class State {
   int Get() const;
 
   friend std::ostream& operator<<(std::ostream& os, const State& state);
+  friend bool operator==(const State& state_a, const State& state_b);
   friend bool operator<(const State& state_a, const State& state_b);
   friend bool operator<(const State& state_a, int id_b_state);
   State operator=(const State& state);

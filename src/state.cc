@@ -27,6 +27,10 @@ std::ostream& operator<<(std::ostream& os, const State& state) {
   return os;
 }
 
+bool operator==(const State& state_a, const State& state_b) {
+  return state_a.Get() == state_b.Get();
+}
+
 bool operator<(const State& state_a, const State& state_b) {
   return state_a.Get() < state_b.Get();
 }

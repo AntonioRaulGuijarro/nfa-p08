@@ -26,7 +26,7 @@ class Automata {
   Automata();
   Automata(const std::set<State>& states, const Alphabet& alphabet,
            State& initial, const std::set<State>& finals,
-          Transitions*& transitions);
+           Transitions*& transitions);
   virtual ~Automata();
 
   /**
@@ -36,6 +36,7 @@ class Automata {
    * @return false Si no pertenece al automata
    */
   virtual bool CheckWord(const std::string& word) = 0;
+
   /**
    * @brief Construye los estados en base al número de estados
    * @param number_states número de estados

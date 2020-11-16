@@ -9,7 +9,7 @@ class TransitionsNfa : public Transitions {
  public:
   using Transitions::Transitions;
   ~TransitionsNfa();
-  State find(const State& state, char symbol) const;
+  std::set<State> find(const State& state, char symbol) const;
 };
 
 #endif

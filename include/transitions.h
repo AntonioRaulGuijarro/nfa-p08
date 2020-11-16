@@ -9,7 +9,7 @@
  * @brief Cabecera de la clase Tranitions. Se extienede de un mapa multiple
  * desordenado con clave State y valor char. Su objetivo es seguir el
  * comportamiento de la función de transición de un automata.
- * @version 0.1
+ * @version 1.1
  * @date 2020-11-03
  * @copyright Copyright (c) 2020
  */
@@ -20,6 +20,7 @@
 #include <iostream>
 #include <unordered_map>
 #include <utility>
+#include <set>
 
 #include "key_transition.h"
 #include "state.h"
@@ -31,10 +32,12 @@ class Transitions : public TransitionMap {
   Transitions();
   virtual ~Transitions();
 
-  virtual State find(const State& state, char symbol) const = 0;
+  virtual std::set<State> find(const State& state, char symbol) const = 0;
 
   friend std::ostream& operator<<(std::ostream& os,
                                   const Transitions& transitions);
 };
+
+const char EPSILON = '~';
 
 #endif
