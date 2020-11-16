@@ -25,6 +25,8 @@
 class KeyTransition : public std::pair<State, char> {
  public:
   using std::pair<State, char>::pair;
+  KeyTransition(int id_state, char symbol);
+
   KeyTransition operator=(const KeyTransition& key);
   friend bool operator<(const KeyTransition& key_a, const KeyTransition& key_b);
   friend bool operator==(const KeyTransition& key_a,

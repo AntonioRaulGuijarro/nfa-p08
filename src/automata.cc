@@ -27,6 +27,10 @@ Automata::Automata(const std::set<State>& states, const Alphabet& alphabet,
 
 Automata::~Automata() { delete transitions_; }
 
+void Automata::BuildStates(int number_states) {
+  for (int i = 0; i < number_states; i++) states_.insert(i);
+}
+
 std::ostream& operator<<(std::ostream& os, const Automata& automata) {
   os << automata.alphabet_ << std::endl;
   os << "Q: ";

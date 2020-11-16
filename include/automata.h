@@ -36,6 +36,12 @@ class Automata {
    * @return false Si no pertenece al automata
    */
   virtual bool CheckWord(const std::string& word) = 0;
+  /**
+   * @brief Construye los estados en base al número de estados
+   * @param number_states número de estados
+   */
+  void BuildStates(int number_states);
+
   friend std::ostream& operator<<(std::ostream& os, const Automata& automata);
 
  protected:

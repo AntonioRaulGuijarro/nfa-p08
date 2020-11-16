@@ -15,6 +15,11 @@
 
 #include "../include/key_transition.h"
 
+KeyTransition::KeyTransition(int id_state, char symbol) {
+  this->first = State(id_state);
+  this->second = symbol;
+}
+
 KeyTransition KeyTransition::operator=(const KeyTransition& key) {
   first = key.first;
   second = key.second;

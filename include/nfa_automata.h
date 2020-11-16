@@ -5,6 +5,7 @@
 #include <fstream>
 #include <string>
 #include "automata.h"
+#include "transitions_nfa.h"
 
 class Nfa : public Automata {
 public:
@@ -14,7 +15,7 @@ public:
 
   bool CheckWord(const std::string& word);
 
-  friend std::istream& operator>>(std::istream& is, const Nfa& nfa);
+  friend std::istream& operator>>(std::istream& is, Nfa& nfa);
 };
 
 #endif
