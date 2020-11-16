@@ -5,6 +5,7 @@ Nfa::Nfa(const std::string& buid_path_file) : Automata() {
   std::fstream build_file(buid_path_file, std::ios::in);
   if (!build_file.is_open()) throw "ARCHIVO NO ENCONTRADO";
   build_file >> *this;
+  build_file.close();
 }
 
 Nfa::~Nfa() {}
@@ -47,6 +48,7 @@ std::istream& operator>>(std::istream& is, Nfa& nfa) {
   is >> initial_state_id;
   nfa.BuildStates(number_states);
   nfa.initial_ = State(initial_state_id);
+  if (nfa.states_.find(nfa.initial_) == nfa.states_.end()) throw "ESTADO INICIAL INEXISTENTE";
   while (!is.eof()) {
     counter++;
     is >> current_id;

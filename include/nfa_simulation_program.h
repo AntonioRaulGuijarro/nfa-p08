@@ -13,6 +13,7 @@ public:
 
   int Run();
   void Process();
+  void Analyse(Automata*& nfa);
   void ShowUsage() const;
 };
 

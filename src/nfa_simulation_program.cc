@@ -8,7 +8,7 @@ int NfaSimulationProgram::Run() {
   } else {
     try {
       Process();
-    } catch (const std::string& error) {
+    } catch (const char* error) {
       std::cerr << error << std::endl;
     }
   }
@@ -17,16 +17,28 @@ int NfaSimulationProgram::Run() {
 
 void NfaSimulationProgram::Process() {
   std::string input_path_nfa = arg_[1];
+  Automata* nfa = new Nfa(input_path_nfa);
+  std::cout << *nfa;
+  Analyse(nfa);
+}
+
+void NfaSimulationProgram::Analyse(Automata*& nfa) {
   std::string input_path_words = arg_[2];
   std::string output_path_results = arg_[3];
   std::fstream input_words(input_path_words, std::ios::in);
   std::fstream output_result(output_path_results, std::ios::out);
-  Automata* nfa;
+  std::string line;
   if (!input_words.is_open() || !output_result.is_open())
     throw "FALLO A LA HORA DE CARGAR O CREAR ARCHIVOS";
-  
-  nfa = new Nfa(input_path_nfa);
-  std::cout << *nfa;
+
+  while(!input_words.eof()) {
+    std::getline(input_words, line);
+    output_result << line << " -- ";
+    output_result << (nfa->CheckWord(line) ? "Si" : "No") << std::endl;
+  }
+
+  input_words.close();
+  output_result.close();
 }
 
 void NfaSimulationProgram::ShowUsage() const {
