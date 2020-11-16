@@ -14,15 +14,13 @@
 
 #include "../include/state.h"
 
-State::State() {}
+State::State() { id_ = -1; }
 
 State::State(int id) { id_ = id; }
 
 State::~State() {}
 
-int State::Get() const{
-  return id_;
-}
+int State::Get() const { return id_; }
 
 std::ostream& operator<<(std::ostream& os, const State& state) {
   os << "q" << state.Get();

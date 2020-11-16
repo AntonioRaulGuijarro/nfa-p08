@@ -31,6 +31,9 @@ class State {
   friend bool operator<(const State& state_a, int id_b_state);
   State operator=(const State& state);
 
+ public:
+  static const State NULL_STATE;
+
  private:
   int id_;
 };
