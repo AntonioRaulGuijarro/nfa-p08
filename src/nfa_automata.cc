@@ -14,24 +14,38 @@ bool Nfa::CheckWord(const std::string& word) {
   std::set<State> match_states;
   std::set<State> match_eps_states;
   std::set<State> aux_states;
-  match_eps_states = transitions_->find(initial_, EPSILON);
+  match_states.insert(initial_);
 
   for (char symbol : word) {
     if (alphabet_.find(symbol) == alphabet_.end()) return false;
+
+    // e-clausura
+    for (auto it = match_states.begin(); it != match_states.end(); it++) {
+      if (*it == State::NULL_STATE()) return false;
+      aux_states = transitions_->find(*it, EPSILON);
+      match_eps_states.insert(aux_states.begin(), aux_states.end());
+    }
+
     match_states.clear();
+    // transicion
     for (auto it = match_eps_states.begin(); it != match_eps_states.end();
          it++) {
       aux_states = transitions_->find(*it, symbol);
       match_states.insert(aux_states.begin(), aux_states.end());
     }
+
     match_eps_states.clear();
+    // e-clausura
     for (auto it = match_states.begin(); it != match_states.end(); it++) {
+      if (*it == State::NULL_STATE()) continue;
       aux_states = transitions_->find(*it, EPSILON);
       match_eps_states.insert(aux_states.begin(), aux_states.end());
     }
+
+    match_states.clear();
   }
   std::set<State> intersection;
-  std::set_intersection(match_states.begin(), match_states.end(),
+  std::set_intersection(match_eps_states.begin(), match_eps_states.end(),
                         finals_.begin(), finals_.end(),
                         std::inserter(intersection, intersection.begin()));
 
@@ -48,7 +62,8 @@ std::istream& operator>>(std::istream& is, Nfa& nfa) {
   is >> initial_state_id;
   nfa.BuildStates(number_states);
   nfa.initial_ = State(initial_state_id);
-  if (nfa.states_.find(nfa.initial_) == nfa.states_.end()) throw "ESTADO INICIAL INEXISTENTE";
+  if (nfa.states_.find(nfa.initial_) == nfa.states_.end())
+    throw "ESTADO INICIAL INEXISTENTE";
   while (!is.eof()) {
     counter++;
     is >> current_id;

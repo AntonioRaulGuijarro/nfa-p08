@@ -20,6 +20,7 @@ void NfaSimulationProgram::Process() {
   Automata* nfa = new Nfa(input_path_nfa);
   std::cout << *nfa;
   Analyse(nfa);
+  delete nfa;
 }
 
 void NfaSimulationProgram::Analyse(Automata*& nfa) {
