@@ -12,7 +12,7 @@
  * @copyright Copyright (c) 2020
  */
 
-#include "../include/progam.h"
+#include "../include/program.h"
 
 Program::Program(int argc, char const *argv[]) { arg_ = ParseArgv(argc, argv); }
 

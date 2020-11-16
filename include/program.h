@@ -16,6 +16,8 @@
 #ifndef PROGRAM_H_
 #define PROGRAM_H_
 
+#include <iostream>
+#include <fstream>
 #include <vector>
 #include <string>
 

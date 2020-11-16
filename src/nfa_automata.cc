@@ -1,6 +1,6 @@
 #include "../include/nfa_automata.h"
 
-Nfa::Nfa(const std::string& buid_path_file) {
+Nfa::Nfa(const std::string& buid_path_file) : Automata() {
   transitions_ = new TransitionsNfa;
   std::fstream build_file(buid_path_file, std::ios::in);
   if (!build_file.is_open()) throw "ARCHIVO NO ENCONTRADO";
@@ -18,7 +18,8 @@ bool Nfa::CheckWord(const std::string& word) {
   for (char symbol : word) {
     if (alphabet_.find(symbol) == alphabet_.end()) return false;
     match_states.clear();
-    for (auto it = match_eps_states.begin(); it != match_eps_states.end(); it++) {
+    for (auto it = match_eps_states.begin(); it != match_eps_states.end();
+         it++) {
       aux_states = transitions_->find(*it, symbol);
       match_states.insert(aux_states.begin(), aux_states.end());
     }
@@ -28,8 +29,12 @@ bool Nfa::CheckWord(const std::string& word) {
       match_eps_states.insert(aux_states.begin(), aux_states.end());
     }
   }
-  // Interseccion de match_states con los estados finales
-  return false;
+  std::set<State> intersection;
+  std::set_intersection(match_states.begin(), match_states.end(),
+                        finals_.begin(), finals_.end(),
+                        std::inserter(intersection, intersection.begin()));
+
+  return intersection.size() != 0;
 }
 
 std::istream& operator>>(std::istream& is, Nfa& nfa) {
@@ -59,4 +64,5 @@ std::istream& operator>>(std::istream& is, Nfa& nfa) {
     }
   }
   if (counter != number_states) throw "NÚMERO DE ESTADOS MAL ESTABLECIDOS";
+  return is;
 }

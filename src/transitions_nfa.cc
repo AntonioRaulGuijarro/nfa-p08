@@ -9,9 +9,10 @@ std::set<State> TransitionsNfa::find(const State& state, char symbol) const {
   if (symbol == EPSILON) match_states.insert(state);
   if (range.first == this->end() && range.second == this->end() &&
       match_states.size() == 0)
-    match_states.insert(State::NULL_STATE);
+    match_states.insert(State::NULL_STATE());
   else {
-    match_states.insert(range.first, range.second);
+    for (auto it = range.first; it != range.second; ++it)
+      match_states.insert(it->second);
   }
 
   return match_states;

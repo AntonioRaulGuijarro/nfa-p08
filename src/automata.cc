@@ -15,6 +15,8 @@
 
 #include "../include/automata.h"
 
+Automata::Automata() {}
+
 Automata::Automata(const std::set<State>& states, const Alphabet& alphabet,
                    State& initial, const std::set<State>& finals,
                    Transitions*& transitions) {

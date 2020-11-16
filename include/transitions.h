@@ -20,11 +20,13 @@
 #include <iostream>
 #include <unordered_map>
 #include <utility>
+#include <algorithm> 
 #include <set>
 
 #include "key_transition.h"
 #include "state.h"
 
+#define EPSILON '~'
 typedef std::unordered_multimap<KeyTransition, State, HashKeyTransition> TransitionMap;
 
 class Transitions : public TransitionMap {
@@ -37,7 +39,5 @@ class Transitions : public TransitionMap {
   friend std::ostream& operator<<(std::ostream& os,
                                   const Transitions& transitions);
 };
-
-const char EPSILON = '~';
 
 #endif

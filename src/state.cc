@@ -43,3 +43,8 @@ State State::operator=(const State& state) {
   id_ = state.Get();
   return *this;
 }
+
+const State& State::NULL_STATE() {
+  static const State NULL_STATE_(-1);
+  return NULL_STATE_;
+}
