@@ -9,7 +9,7 @@
  * @brief Cabecera de la clase Tranitions. Se extienede de un mapa multiple
  * desordenado con clave State y valor char. Su objetivo es seguir el
  * comportamiento de la función de transición de un automata.
- * @version 1.1
+ * @version 2.1
  * @date 2020-11-03
  * @copyright Copyright (c) 2020
  */

@@ -8,7 +8,7 @@
  * @author Antonio Raúl Guijarro Contreras (alu0101100494@ull.edu.es)
  * @brief Cabecera de la clase State. Representa a un estado, es deicir, una clase
  * que encapsula una identificación.
- * @version 0.1
+ * @version 1.1
  * @date 2020-11-03
  * @copyright Copyright (c) 2020
  */

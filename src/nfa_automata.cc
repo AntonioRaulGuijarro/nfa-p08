@@ -1,3 +1,17 @@
+/**
+ * Universidad de La Laguna
+ * Escuela Superior de Ingeniería y Tecnología
+ * Grado en Ingeniería Informática
+ * Computabilidad y algorítmia
+ *
+ * @file nfa_automata.cc
+ * @author Antonio Raúl Guijarro Contreras (alu0101100494@ull.edu.es)
+ * @brief Desarrollo de la clase Nfa.
+ * @version 0.1
+ * @date 2020-11-16
+ * @copyright Copyright (c) 2020
+ */
+
 #include "../include/nfa_automata.h"
 
 Nfa::Nfa(const std::string& buid_path_file) : Automata() {

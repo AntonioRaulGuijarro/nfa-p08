@@ -1,3 +1,17 @@
+/**
+ * Universidad de La Laguna
+ * Escuela Superior de Ingeniería y Tecnología
+ * Grado en Ingeniería Informática
+ * Computabilidad y algorítmia
+ *
+ * @file nfa_automata.h
+ * @author Antonio Raúl Guijarro Contreras (alu0101100494@ull.edu.es)
+ * @brief Cabecera de la clase Nfa. Se comporta como un Autómata no finito.
+ * @version 0.1
+ * @date 2020-11-16
+ * @copyright Copyright (c) 2020
+ */
+
 #ifndef NFA_AUTOMATA_H_
 #define NFA_AUTOMATA_H_
 

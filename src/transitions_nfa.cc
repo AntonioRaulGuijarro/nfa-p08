@@ -1,3 +1,17 @@
+/**
+ * Universidad de La Laguna
+ * Escuela Superior de Ingeniería y Tecnología
+ * Grado en Ingeniería Informática
+ * Computabilidad y algorítmia
+ *
+ * @file transitions_nfa.cc
+ * @author Antonio Raúl Guijarro Contreras (alu0101100494@ull.edu.es)
+ * @brief Desarrollo de la clase transitions_nfa.
+ * @version 0.1
+ * @date 2020-11-16
+ * @copyright Copyright (c) 2020
+ */
+
 #include "../include/transitions_nfa.h"
 
 TransitionsNfa::~TransitionsNfa() {}
