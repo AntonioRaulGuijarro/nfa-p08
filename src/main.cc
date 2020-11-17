@@ -1,8 +1,9 @@
 #include "../include/nfa_simulation_program.h"
 
 int main(int argc, char const *argv[]) {
+  int exit_return;
   Program* nfa_program = new NfaSimulationProgram(argc, argv);
-  nfa_program->Run();
+  exit_return = nfa_program->Run();
   delete nfa_program;
-  return 0;
+  return exit_return;
 }

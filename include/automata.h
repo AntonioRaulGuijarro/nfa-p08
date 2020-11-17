@@ -20,6 +20,7 @@
 #include "alphabet.h"
 #include "state.h"
 #include "transitions.h"
+#include "automata_exceptions.h"
 
 class Automata {
  public:

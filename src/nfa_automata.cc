@@ -3,7 +3,7 @@
 Nfa::Nfa(const std::string& buid_path_file) : Automata() {
   transitions_ = new TransitionsNfa;
   std::fstream build_file(buid_path_file, std::ios::in);
-  if (!build_file.is_open()) throw "ARCHIVO NO ENCONTRADO";
+  if (!build_file.is_open()) throw std::ios_base::failure("ARCHIVO NO ENCONTRADO");
   build_file >> *this;
   build_file.close();
 }
@@ -63,7 +63,7 @@ std::istream& operator>>(std::istream& is, Nfa& nfa) {
   nfa.BuildStates(number_states);
   nfa.initial_ = State(initial_state_id);
   if (nfa.states_.find(nfa.initial_) == nfa.states_.end())
-    throw "ESTADO INICIAL INEXISTENTE";
+    throw InitialStateNotFoundException();
   while (!is.eof()) {
     counter++;
     is >> current_id;
@@ -72,14 +72,15 @@ std::istream& operator>>(std::istream& is, Nfa& nfa) {
 
     if (isFinal) nfa.finals_.insert(current_id);
     for (int i = 0; i < number_transitions; i++) {
-      if (is.eof()) throw "MALA DECLARACIÓN DE CONSTRUCCIÓN";
+      if (is.eof()) throw ConstructionException();
       is >> symbol;
       is >> to_state;
+      if (nfa.states_.find(to_state) == nfa.states_.end()) throw StateNotDeclaredException();
       nfa.alphabet_.insert(symbol);
       nfa.transitions_->insert(
           std::make_pair(KeyTransition(current_id, symbol), State(to_state)));
     }
   }
-  if (counter != number_states) throw "NÚMERO DE ESTADOS MAL ESTABLECIDOS";
+  if (counter != number_states) throw InsufficientStatesException();
   return is;
 }

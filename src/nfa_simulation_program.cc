@@ -8,8 +8,10 @@ int NfaSimulationProgram::Run() {
   } else {
     try {
       Process();
-    } catch (const char* error) {
-      std::cerr << error << std::endl;
+    } catch (std::ios_base::failure& input_out_error) {
+      std::cerr << input_out_error.what() << std::endl;
+    } catch (AutomataException& automata_error) {
+      std::cerr << automata_error.what() << std::endl;
     }
   }
   return 0;
@@ -30,9 +32,9 @@ void NfaSimulationProgram::Analyse(Automata*& nfa) {
   std::fstream output_result(output_path_results, std::ios::out);
   std::string line;
   if (!input_words.is_open() || !output_result.is_open())
-    throw "FALLO A LA HORA DE CARGAR O CREAR ARCHIVOS";
+    throw std::ios_base::failure("FALLO A LA HORA DE CARGAR ARCHIVOS");
 
-  while(!input_words.eof()) {
+  while (!input_words.eof()) {
     std::getline(input_words, line);
     output_result << line << " -- ";
     output_result << (nfa->CheckWord(line) ? "Si" : "No") << std::endl;

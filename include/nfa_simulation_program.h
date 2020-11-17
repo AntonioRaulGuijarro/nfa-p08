@@ -5,7 +5,6 @@
 #include "automata.h"
 #include "nfa_automata.h"
 
-
 class NfaSimulationProgram : public Program {
 public:
   using Program::Program;
