@@ -34,9 +34,13 @@ int NfaSimulationProgram::Run() {
 void NfaSimulationProgram::Process() {
   std::string input_path_nfa = arg_[1];
   Automata* nfa = new Nfa(input_path_nfa);
-  std::cout << *nfa;
+  Modification(nfa);
   Analyse(nfa);
   delete nfa;
+}
+
+void NfaSimulationProgram::Modification(Automata*& nfa) {
+  nfa->
 }
 
 void NfaSimulationProgram::Analyse(Automata*& nfa) {
@@ -45,6 +49,7 @@ void NfaSimulationProgram::Analyse(Automata*& nfa) {
   std::fstream input_words(input_path_words, std::ios::in);
   std::fstream output_result(output_path_results, std::ios::out);
   std::string line;
+
   if (!input_words.is_open() || !output_result.is_open())
     throw std::ios_base::failure("FALLO A LA HORA DE CARGAR ARCHIVOS");
 

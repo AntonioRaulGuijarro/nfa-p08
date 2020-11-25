@@ -17,7 +17,8 @@
 Nfa::Nfa(const std::string& buid_path_file) : Automata() {
   transitions_ = new TransitionsNfa;
   std::fstream build_file(buid_path_file, std::ios::in);
-  if (!build_file.is_open()) throw std::ios_base::failure("ARCHIVO NO ENCONTRADO");
+  if (!build_file.is_open())
+    throw std::ios_base::failure("ARCHIVO NO ENCONTRADO");
   build_file >> *this;
   build_file.close();
 }
@@ -89,7 +90,8 @@ std::istream& operator>>(std::istream& is, Nfa& nfa) {
       if (is.eof()) throw ConstructionException();
       is >> symbol;
       is >> to_state;
-      if (nfa.states_.find(to_state) == nfa.states_.end()) throw StateNotDeclaredException();
+      if (nfa.states_.find(to_state) == nfa.states_.end())
+        throw StateNotDeclaredException();
       nfa.alphabet_.insert(symbol);
       nfa.transitions_->insert(
           std::make_pair(KeyTransition(current_id, symbol), State(to_state)));
@@ -97,4 +99,16 @@ std::istream& operator>>(std::istream& is, Nfa& nfa) {
   }
   if (counter != number_states) throw InsufficientStatesException();
   return is;
+}
+
+void Nfa::Modification() {
+  for (auto& initial_state : states_) {
+    auto first_states_epsilon = transitions_->equal_range(KeyTransition(initial_state, EPSILON));
+    for (auto it = first_states_epsilon.first; it != first_states_epsilon.second; it++) {
+      auto second_states_epsilon = transitions_->equal_range(KeyTransition(it->first.first, EPSILON));
+      if (std::distance(second_states_epsilon.first, second_states_epsilon.second) != 0) {
+        std::cout << "Redundant states: " << 
+      }
+    }
+  } 
 }

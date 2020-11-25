@@ -28,6 +28,7 @@ public:
   ~Nfa();
 
   bool CheckWord(const std::string& word);
+  void Modification();
 
   friend std::istream& operator>>(std::istream& is, Nfa& nfa);
 };

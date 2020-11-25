@@ -30,6 +30,7 @@ class NfaSimulationProgram : public Program {
   int Run();
   void Process();
   void Analyse(Automata*& nfa);
+  void Modification(Automata*& nfa);
   void ShowUsage() const;
 };
 
