@@ -106,8 +106,9 @@ void Nfa::Modification() {
     auto first_states_epsilon = transitions_->equal_range(KeyTransition(initial_state, EPSILON));
     for (auto it = first_states_epsilon.first; it != first_states_epsilon.second; it++) {
       auto second_states_epsilon = transitions_->equal_range(KeyTransition(it->first.first, EPSILON));
-      if (std::distance(second_states_epsilon.first, second_states_epsilon.second) != 0) {
-        std::cout << "Redundant states: " << 
+      if (std::distance(second_states_epsilon.first, second_states_epsilon.second) != 1) {
+        std::cout << "Redundant states: " << it->first.first << '\n';
+        break;
       }
     }
   } 

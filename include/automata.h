@@ -44,6 +44,8 @@ class Automata {
    */
   void BuildStates(int number_states);
 
+  virtual void Modification() = 0;
+
   friend std::ostream& operator<<(std::ostream& os, const Automata& automata);
 
  protected:

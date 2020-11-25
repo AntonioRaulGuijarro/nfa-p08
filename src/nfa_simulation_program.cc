@@ -40,7 +40,7 @@ void NfaSimulationProgram::Process() {
 }
 
 void NfaSimulationProgram::Modification(Automata*& nfa) {
-  nfa->
+  nfa->Modification();
 }
 
 void NfaSimulationProgram::Analyse(Automata*& nfa) {
